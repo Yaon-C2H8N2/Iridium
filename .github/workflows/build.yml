@@ -114,6 +114,8 @@ jobs:
       - name: Install Rclone
         run: |
           winget install Rclone.Rclone --disable-interactivity --accept-source-agreements
+        env:
+          PATH: ${{env.PATH}};C:\\Program Files\\WinGet\\Links\\rclone.exe
 
       - name: Build rclone_cpp
         working-directory: ${{ github.workspace }}\\rclone_cpp

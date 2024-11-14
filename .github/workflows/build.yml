@@ -74,8 +74,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Installing winget
-        uses: Cyberboss/install-winget@v1
+      - name: Installing choco
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
       - name: Install Python
         uses: actions/setup-python@v5
@@ -113,9 +114,9 @@ jobs:
 
       - name: Install Rclone
         run: |
-          winget install Rclone.Rclone --disable-interactivity --accept-source-agreements
+          choco install rclone -y
         env:
-          PATH: ${{env.PATH}};C:\\Program Files\\WinGet\\Links\\rclone.exe
+          PATH: ${{env.PATH}};C:\\ProgramData\\chocolatey\\bin\\rclone.exe
 
       - name: Build rclone_cpp
         working-directory: ${{ github.workspace }}\\rclone_cpp

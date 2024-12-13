@@ -114,7 +114,7 @@ jobs:
 
       - name: Install Rclone
         run: |
-          choco install rclone -y
+          C:\\ProgramData\\Chocolatey\\bin\\choco.exe install rclone -y
         env:
           PATH: ${{env.PATH}};C:\\ProgramData\\chocolatey\\bin\\rclone.exe
 
